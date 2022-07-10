@@ -1,9 +1,10 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {
+module.exports = {
     reactStrictMode: true,
+    images: {
+        loader: 'imgix',
+        path: '',
+    },
 }
-
-module.exports = nextConfig
 
 const withTM = require('next-transpile-modules') // pass the modules you would like to see transpiled
 

@@ -1,6 +1,6 @@
-import Image from 'next/image'
 import { Col } from 'react-bootstrap'
 import style from './ImageLink.module.css'
+
 export default function ImageLink(props) {
     return (
         <Col className={style.col}>
@@ -10,13 +10,13 @@ export default function ImageLink(props) {
                 target="_blank"
                 rel="noreferrer"
             >
-                <Image
+                <img
                     className={style.logo}
                     src={`/${props.src}`}
                     width="50"
                     height="50"
                     alt={props.alt}
-                ></Image>
+                />
             </a>
             <h6> {props.desc}</h6>
         </Col>
