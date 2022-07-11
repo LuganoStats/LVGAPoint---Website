@@ -6,6 +6,7 @@ on:
     push:
         branches:
             - main
+
     workflow_dispatch:
 
 jobs:
@@ -21,15 +22,16 @@ jobs:
                   node-version: 'lts/*'
                   cache: 'npm'
 
-            - name: Checkout
-              uses: actions/checkout@v1
+            - name: Build
+              run: |
+                  npm i --legacy-peer-deps
+                  npm run build
+                  npm run export
+            - name: Add CNAME to directory
+              run: echo coin.luganostats.com >> ./out/CNAME
 
-            - name: Build and Deploy
-              uses: sau1707/gh-pages-deploy-action@v1.2
+            - name: Deploy
+              uses: peaceiris/actions-gh-pages@v3
               with:
-                  install-command: npm i --legacy-peer-deps
-                  access-token: ${{ secrets.ACTIONS_DEPLOY_KEY }}
-                  source-directory: out
-                  build-command: npm run build
-                  export-command: npm run export
-                  custom-domain: coin.luganostats.com
+                  deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+                  publish_dir: ./out
