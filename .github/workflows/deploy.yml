@@ -26,9 +26,11 @@ jobs:
               run: |
                   npm i --legacy-peer-deps
 
+            - name: Checkout
+              uses: actions/checkout@v1
+
             - name: Build and Deploy
-            - uses: actions/checkout@v1
-            - uses: sterlingwes/gh-pages-deploy-action@v1.1
+              uses: sterlingwes/gh-pages-deploy-action@v1.1
               with:
                   access-token: ${{ secrets.ACTIONS_DEPLOY_KEY }}
                   source-directory: out
