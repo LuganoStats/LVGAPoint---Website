@@ -21,10 +21,6 @@ jobs:
                   node-version: 'lts/*'
                   cache: 'npm'
 
-            - name: Install Packages
-              run: |
-                  npm i --legacy-peer-deps
-
             - name: Checkout
               uses: actions/checkout@v1
 
