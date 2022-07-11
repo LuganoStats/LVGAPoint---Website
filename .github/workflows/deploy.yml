@@ -22,13 +22,15 @@ jobs:
                   node-version: 'lts/*'
                   cache: 'npm'
 
-            - name: Build
+            - name: Install Packages
               run: |
                   npm i --legacy-peer-deps
-                  npm run build
-                  npm run export
-            - name: Deploy
-              uses: peaceiris/actions-gh-pages@v3
+
+            - name: Build and Deploy
+            - uses: actions/checkout@v1
+            - uses: sterlingwes/gh-pages-deploy-action@v1.1
               with:
-                  deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
-                  publish_dir: ./out
+                  access-token: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+                  source-directory: out
+                  build-command: npm run build && npm run export
+                  custom-domain: coin.luganostats.com
