@@ -25,9 +25,11 @@ jobs:
               uses: actions/checkout@v1
 
             - name: Build and Deploy
-              uses: sau1707/gh-pages-deploy-action@v1.2
+              uses: sau1707/gh-pages-deploy-action@v1.1
               with:
+                  install-command: npm i --legacy-peer-deps
                   access-token: ${{ secrets.ACTIONS_DEPLOY_KEY }}
                   source-directory: out
-                  build-command: npm run build && npm run export
+                  build-command: npm run build
+                  export-command: npm run export
                   custom-domain: coin.luganostats.com
