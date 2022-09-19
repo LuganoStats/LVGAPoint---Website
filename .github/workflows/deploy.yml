@@ -2,7 +2,7 @@ name: Deploy to Github Pages
 
 on:
     schedule:
-        - cron: '0 23 * * *' # runs at 01:00 UTC everyday
+        - cron: '0 23 * * 1' # runs at 01:00 UTC everyday
     push:
         branches:
             - main
